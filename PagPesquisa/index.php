@@ -1,16 +1,12 @@
 <?php
-
 include("conexao.php");
-$query = $_GET['query'];
+$query = $_GET['busca'];
 
 if ($query) {
-
     $parametro = $query;
-
 } else {
-    $query = "";
+    $parametro = '';
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +22,10 @@ if ($query) {
     <h1>Biblioteca</h1>
 
     <div>
-
         <form action="" method="GET">
             <label for="Pesquisa"> Pesquisar livro:</label>
-            <input name="busca" type="text" placeholder="Digite o nome livro ou o nome do Autor" size="30" required>
-            <button type="submit">
-                Pesquisar
-            </button>
+            <input name="busca" type="text" placeholder="Digite o nome livro ou o nome do Autor" size="30">
+            <button type="submit">Pesquisar</button>
         </form>
         <br>
         <table border='1' width="600px">
@@ -47,34 +40,43 @@ if ($query) {
                 <tr>
                     <td colspan="3">Digite sua pesquisa...</td>
                 </tr>
-            <?php
+                <?php
             } else {
                 $pesquisa = $mysqli->real_escape_string($_GET['busca']);
-                $sql_code = "SELECT liv.titulo, aut.nome, cat.nome
-                FROM categorias cat inner join livro_categoria lc
-                on cat.id_categorias = lc.id_categoria
-                inner join livros liv 
-                on lc.id_livro = liv.id_livros
-                inner join autores aut ON liv.autor = aut.id_autores
-                --where liv.titulo = '$parametro'
-                ";
+                $sql_code = "SELECT liv.titulo as livros, aut.nome as autores, cat.nome as categorias
+                             FROM categorias cat 
+                             INNER JOIN livro_categoria lc ON cat.id_categorias = lc.id_categoria
+                             INNER JOIN livros liv ON lc.id_livro = liv.id_livros
+                             INNER JOIN autores aut ON liv.autor = aut.id_autores
+                             WHERE liv.titulo LIKE '%$pesquisa%'";
+
                 $sql_query = $mysqli->query($sql_code) or die("ERRO AO CONSULTAR" . $mysqli->error);
-                
-                if($sql_query->num_rows == 0){
-                    ?>
+
+                if ($sql_query->num_rows == 0) {
+                ?>
                     <tr>
                         <td colspan='3'>Nenhum resultado encontrado...</td>
                     </tr>
-                <?php
+                    <?php
                 } else {
-
-                }
-
-                ?>
+                    while ($dados = $sql_query->fetch_assoc()) {
+                    ?>
+                        <tr>
+                            <td><?php echo $dados['livros']; ?></td>
+                            <td><?php echo $dados['autores']; ?></td>
+                            <td><?php echo $dados['categorias']; ?></td>
+                        </tr>
 
             <?php
-            } ?>
+                    }
+                }
+            }
+            ?>
         </table>
+    </div>
+    <br>
+    <div>
+        <a href="../cadastroLivros/index.php"> Cadastrar livros</a>
     </div>
 </body>
 
