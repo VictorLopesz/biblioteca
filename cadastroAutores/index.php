@@ -15,17 +15,26 @@ include("../config/conexao.php");
     <h3>
         CADASTRAR AUTORES
     </h3>
-    <div>
-        <label for="">Nome do autor:</label>
-        <input name="autor" id="autor" type="text" placeholder="Digite o nome do Autor" size="30" required>
-    </div>
-    <br>
-    <div>
-        <label for="">Nacionalidade:</label>
-        <input name="nacionalidade" id="nacionalidade" type="text" placeholder="Digite o nome do Autor" size="30" required>
-    </div>
-    <br>
-    <input type='submit' name="cadastrar">
+    <form action="gravarAutores.php" method="POST">
+        <div>
+            <label for="">Nome do autor:</label>
+            <input name="nome" id="nome" type="text" placeholder="Digite o nome do Autor" size="30" required>
+        </div>
+        <br>
+        <div>
+            <label for="">Nacionalidade:</label>
+            <input name="nacionalidade" id="nacionalidade" type="text" placeholder="Digite o nome do Autor" size="30" required>
+        </div>
+        <br>
+        <input type="submit" value="cadastrar" name="cadastrar">
+    </form>
+<br><br>
+    <button >
+        <a href="http://localhost:8000/cadastroLivros/index.php">cadastrar livros</a>
+    </button>
+    <button >
+        <a href="http://localhost:8000/PagPesquisa/index.php">pesquisar livros</a>
+    </button>
 
 </body>
 

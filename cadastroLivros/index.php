@@ -1,3 +1,9 @@
+<?php
+
+include('../config/conexao.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,7 +15,7 @@
 
 <body>
     <div>
-        <form action="./gravarLivro.php" method="POST">
+        <form action="gravarLivro.php" method="POST">
             <h3>CADASTRAR LIVROS</h3>
             <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
             <div>
@@ -19,31 +25,37 @@
             <br>
             <div>
                 <label for="">Nome do autor:</label>
-                <input name="autor" id="autor" type="text" placeholder="Digite o nome do Autor" size="30" required>
-            </div>
-            <div>
-                <br>
-                <label for="">Nacionalidade:</label>
-                <input name="nacionalidade" id="nacionalidade" type="text" placeholder="Digite a nacionalidade do Autor" size="30" required>
+                <select id="autor" name="autor" required>
+                    <?php
+                    $sql = 'select * from autores';
+                    $query = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($query)) {
+                        echo "<option value='$row[0]'>{$row['nome']}</option>";
+                    }
+                    ?>
+                </select>
+
+                <button>
+                    <a href="http://localhost:8000/cadastroAutores/index.php">Cadastrar autor</a>
+                </button>
+
             </div>
             <br>
             <div>
                 <label for="">Categoria:</label>
-                <select id="nome" name="nome" required>
-                    <option value="" selected></option>
-                    <option value="comedia">Comédia</option>
-                    <option value="terror">Terror</option>
-                    <option value="Acao">Ação</option>
-                    <option value="ficcao">Ficção</option>
-                    <option value="drama">Drama</option>
-                    <option value="tragedia">Tragédia</option>
-                    <option value="autobiografico">Autobiografico</option>
-                    <option value="Aventura">Aventura</option>
-                    <option value="Tecnologia">Tecnologia</option>
-                    <option value="Autoajuda">Autoajuda</option>
+                <select id="categoriaTipo" name="categoriaTipo" required>
+                    <?php
+                    $sql = 'select * from categorias';
+                    $query = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_array($query)) {
+                        echo "<option value='$row[0]'>{$row['categoriaTipo']}";
+                    }
+                    ?>
+
                 </select>
             </div>
             <br>
+
             <div>
                 <label for="">Data de Lançamento:</label>
                 <input type="date" id="ano" name="ano" required>
@@ -52,7 +64,7 @@
             <div>
                 <label for="">Status:</label>
                 <input type="radio" id="ativo" name="status" value="a">
-                <label for="ativo">Ativo</label><br>
+                <label for="ativo">Ativo</label>
                 <input type="radio" id="inativo" name="status" value="i">
                 <label for="inativo">Inativo</label><br>
             </div>
@@ -60,9 +72,9 @@
             <input type='submit' name="cadastrar">
         </form>
         <br>
-        <div>
+        <button>
             <a href="../PagPesquisa/index.php">Página de Pesquisa</a>
-        </div>
+        </button>
     </div>
 </body>
 
