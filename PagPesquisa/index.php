@@ -18,9 +18,13 @@ if( isset($_GET["mensagem"]) && !empty($_GET["mensagem"]))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../navbar/style.css">
     <title>BIBLIOTECA</title>
 </head>
 
+<?php 
+include("../navbar/navbar.php");
+?>
 <body>
     <h1>Biblioteca</h1>
 
@@ -94,13 +98,6 @@ if( isset($_GET["mensagem"]) && !empty($_GET["mensagem"]))
         </table>
     </div>
     <br>
-    <button>
-        <a href="../cadastroLivros/index.php">cadastrar livro</a>
-    </button>
-
-    <button>
-        <a href="../cadastroAutores/index.php">cadastrar autor</a>
-    </button>
 </body>
 
 </html>
