@@ -1,6 +1,15 @@
 <?php
 include("../config/conexao.php");
 
+if( isset($_GET["mensagem"]) && !empty($_GET["mensagem"]))
+    {
+        ?>
+            <div>
+                <?php echo $_GET["mensagem"]; ?>
+            </div>
+        <?php
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +83,7 @@ include("../config/conexao.php");
                             </td>
 
                             <td>
-                                <a href="delete.php?id=<?php echo $dados['livros']; ?>">Excluir</a>
+                                <a href="../excluiLivros/deletaLivros.php?id=<?php echo $dados['id']; ?>">Excluir</a>
                             </td>
                         </tr>
             <?php
