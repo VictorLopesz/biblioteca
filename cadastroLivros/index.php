@@ -10,8 +10,13 @@ include('../config/conexao.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../navbar/style.css">
     <title>Document</title>
 </head>
+
+<?php
+    include('../navbar/navbar.php');
+?>
 
 <body>
     <div>
@@ -20,7 +25,7 @@ include('../config/conexao.php');
             <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
             <div>
                 <label for="nome">Nome do livro:</label>
-                <input name="titulo" id="titulo" type="text" placeholder="Digite o nome livro" size="30" required>
+                <input name="titulo" id="titulo" type="text" placeholder="Digite o nome do livro" size="30" required>
             </div>
             <br>
             <div>
@@ -35,10 +40,9 @@ include('../config/conexao.php');
                     ?>
                 </select>
 
-                <button>
+                <!-- <button>
                     <a href="http://localhost:8000/cadastroAutores/index.php">Cadastrar autor</a>
-                </button>
-
+                </button> -->
             </div>
             <br>
             <div>
@@ -72,9 +76,6 @@ include('../config/conexao.php');
             <input type='submit' name="cadastrar">
         </form>
         <br>
-        <button>
-            <a href="../PagPesquisa/index.php">Página de Pesquisa</a>
-        </button>
     </div>
 </body>
 

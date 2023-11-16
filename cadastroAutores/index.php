@@ -8,8 +8,14 @@ include("../config/conexao.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../navbar/style.css">
+
     <title>Document</title>
 </head>
+
+<?php
+    include("../navbar/navbar.php");
+?>
 
 <body>
     <h3>
@@ -29,12 +35,6 @@ include("../config/conexao.php");
         <input type="submit" value="cadastrar" name="cadastrar">
     </form>
 <br><br>
-    <button >
-        <a href="http://localhost:8000/cadastroLivros/index.php">cadastrar livros</a>
-    </button>
-    <button >
-        <a href="http://localhost:8000/PagPesquisa/index.php">pesquisar livros</a>
-    </button>
 
 </body>
 
