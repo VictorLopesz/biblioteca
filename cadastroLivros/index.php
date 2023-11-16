@@ -11,6 +11,7 @@ include('../config/conexao.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../navbar/style.css">
+    <link rel="stylesheet" href="cadastroLivros.css">
     <title>Document</title>
 </head>
 
@@ -18,11 +19,21 @@ include('../config/conexao.php');
     include('../navbar/navbar.php');
 ?>
 
+<?php
+if (isset($_GET["texto"]) && !empty($_GET["texto"])) {
+?>
+<div id="mensagem_cadastrar">
+    <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
+</div>
+
+<?php
+}
+?>
+
 <body>
     <div>
         <form action="gravarLivro.php" method="POST">
-            <h3>CADASTRAR LIVROS</h3>
-            <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
+            <h1>CADASTRAR LIVROS</h1>
             <div>
                 <label for="nome">Nome do livro:</label>
                 <input name="titulo" id="titulo" type="text" placeholder="Digite o nome do livro" size="30" required>

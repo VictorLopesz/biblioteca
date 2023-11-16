@@ -24,7 +24,7 @@ if (mysqli_query($conn, $sqlLivros)) {
 
     if (mysqli_query($conn, $sqlLivroCategoria)) {
         echo "Livro cadastrado com sucesso!";
-        header("Location: ./?texto=Produto cadastrado com sucesso");
+        header("Location: ./?texto=Livro cadastrado com sucesso");
     } else {
         echo "Erro ao cadastrar livro na categoria: " . mysqli_error($conn);
     }

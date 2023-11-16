@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-#mensagem_excluir{
+#mensagem_cadastrar{
     background-color:#FFD700;
     margin-top: 8px;
     padding: 3px;
@@ -14,9 +14,4 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
 };
-
-h1{
-    padding: 50px;
-}
