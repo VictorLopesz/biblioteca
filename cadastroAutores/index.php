@@ -1,7 +1,3 @@
-<?php
-include("../config/conexao.php");
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,39 +9,33 @@ include("../config/conexao.php");
     <title>Document</title>
 </head>
 
-<?php
-    include("../navbar/navbar.php");
-?>
-
-<?php
-if (isset($_GET["texto"]) && !empty($_GET["texto"])) {
-?>
-<div id="mensagem_cadastrar">
-    <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
-</div>
-
-<?php
-}
-?>
-
 <body>
-    <h3>
-        CADASTRAR AUTORES
-    </h3>
-    <form action="gravarAutores.php" method="POST">
-        <div>
-            <label for="">Nome do autor:</label>
-            <input name="nome" id="nome" type="text" placeholder="Digite o nome do Autor" size="30" required>
+
+    <?php include("../navbar/navbar.php"); ?>
+
+    <?php if (isset($_GET["texto"]) && !empty($_GET["texto"])) { ?>
+        <div id="mensagem_cadastrar">
+            <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
         </div>
-        <br>
-        <div>
-            <label for="">Nacionalidade:</label>
-            <input name="nacionalidade" id="nacionalidade" type="text" placeholder="Digite o nome do Autor" size="30" required>
-        </div>
-        <br>
-        <input type="submit" value="cadastrar" name="cadastrar">
-    </form>
-<br><br>
+    <?php } ?>
+
+    <div class="container">
+        <h3 class="cadastrarAutores">CADASTRAR AUTORES</h3>
+        <form action="gravarAutores.php" method="POST" class="author-form">
+            <div>
+                <label for="nome">Nome do autor:</label>
+                <input name="nome" id="nome" type="text" placeholder="Digite o nome do Autor" size="20" required>
+            </div>
+            <br>
+            <div>
+                <label for="nacionalidade">Nacionalidade:</label>
+                <input name="nacionalidade" id="nacionalidade" type="text" placeholder="Digite a nacionalidade do Autor" size="20" required>
+            </div>
+            <br>
+            <input type="submit" value="Cadastrar" name="cadastrar">
+        </form>
+    </div>
+    <br><br>
 
 </body>
 

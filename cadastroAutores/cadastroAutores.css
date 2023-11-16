@@ -2,6 +2,8 @@
 
 *{
     margin: 0;
+    font-family: 'Roboto Condensed', 'sans-serif';
+
 }
 
 #mensagem_cadastrar{
@@ -15,3 +17,51 @@
     align-items: center;
     justify-content: center;
 };
+
+
+body {
+    font-family: 'Roboto Condensed', 'sans-serif';
+    margin: 0;
+    padding: 0;
+}
+
+.cadastrarAutores{
+    font-weight: bold;
+    margin: 30px;
+}
+
+.container {
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+#mensagem_cadastrar {
+    background-color: #f2bc65;
+    color: #382b18;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+h3 {
+    text-align: center;
+}
+
+form {
+    text-align: center;
+    margin: 20px;
+}
+
+input[type="text"] {
+    padding: 5px;
+    width: 60%; 
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

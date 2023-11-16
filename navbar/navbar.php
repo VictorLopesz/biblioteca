@@ -10,12 +10,21 @@
 </head>
 
 <body>
-    <nav id="navbar">
-        <div id="divUnica">
-            <a class="link" href="../PagPesquisa/index.php">Pesquisar Livros</a> |
-            <a class="link" href="../cadastroAutores/index.php">Cadastrar Autores</a> | 
-            <a class="link" href="../cadastroLivros/index.php">Cadastrar Livros</a>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="../img/biblioteca.png" alt="biblioteca">
         </div>
+        <ul class="nav-links">
+            <li>
+                <a class="" href="../PagPesquisa/index.php">Pesquisar Livros</a>
+            </li>
+            <li>
+                <a class="" href="../cadastroAutores/index.php">Cadastrar Autores</a>
+            </li>
+            <li>
+                <a class="" href="../cadastroLivros/index.php">Cadastrar Livros</a>
+            </li>
+        </ul>
     </nav>
 </body>
 

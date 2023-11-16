@@ -1,9 +1,3 @@
-<?php
-
-include('../config/conexao.php');
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,32 +9,26 @@ include('../config/conexao.php');
     <title>Document</title>
 </head>
 
-<?php
-    include('../navbar/navbar.php');
-?>
-
-<?php
-if (isset($_GET["texto"]) && !empty($_GET["texto"])) {
-?>
-<div id="mensagem_cadastrar">
-    <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
-</div>
-
-<?php
-}
-?>
-
 <body>
-    <div>
-        <form action="gravarLivro.php" method="POST">
+
+    <?php include('../navbar/navbar.php'); ?>
+
+    <?php if (isset($_GET["texto"]) && !empty($_GET["texto"])) { ?>
+        <div id="mensagem_cadastrar">
+            <?= isset($_GET['texto']) ? $_GET['texto'] : "" ?>
+        </div>
+    <?php } ?>
+
+    <div class="container">
+        <form action="gravarLivro.php" method="POST" class="book-form">
             <h1>CADASTRAR LIVROS</h1>
             <div>
-                <label for="nome">Nome do livro:</label>
+                <label for="titulo">Nome do livro:</label>
                 <input name="titulo" id="titulo" type="text" placeholder="Digite o nome do livro" size="30" required>
             </div>
             <br>
             <div>
-                <label for="">Nome do autor:</label>
+                <label for="autor">Nome do autor:</label>
                 <select id="autor" name="autor" required>
                     <?php
                     $sql = 'select * from autores';
@@ -50,34 +38,28 @@ if (isset($_GET["texto"]) && !empty($_GET["texto"])) {
                     }
                     ?>
                 </select>
-
-                <!-- <button>
-                    <a href="http://localhost:8000/cadastroAutores/index.php">Cadastrar autor</a>
-                </button> -->
             </div>
             <br>
             <div>
-                <label for="">Categoria:</label>
+                <label for="categoriaTipo">Categoria:</label>
                 <select id="categoriaTipo" name="categoriaTipo" required>
                     <?php
                     $sql = 'select * from categorias';
                     $query = mysqli_query($conn, $sql);
                     while ($row = mysqli_fetch_array($query)) {
-                        echo "<option value='$row[0]'>{$row['categoriaTipo']}";
+                        echo "<option value='$row[0]'>{$row['categoriaTipo']}</option>";
                     }
                     ?>
-
                 </select>
             </div>
             <br>
-
             <div>
-                <label for="">Data de Lançamento:</label>
+                <label for="ano">Data de Lançamento:</label>
                 <input type="date" id="ano" name="ano" required>
             </div>
             <br>
             <div>
-                <label for="">Status:</label>
+                <label>Status:</label>
                 <input type="radio" id="ativo" name="status" value="a">
                 <label for="ativo">Ativo</label>
                 <input type="radio" id="inativo" name="status" value="i">
