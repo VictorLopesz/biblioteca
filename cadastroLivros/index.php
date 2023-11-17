@@ -1,3 +1,7 @@
+<?php
+include('../config/conexao.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,12 +27,12 @@
         <form action="gravarLivro.php" method="POST" class="book-form">
             <h1>CADASTRAR LIVROS</h1>
             <div>
-                <label for="titulo">Nome do livro:</label>
+                <label for="titulo">Nome do livro:</label><br>
                 <input name="titulo" id="titulo" type="text" placeholder="Digite o nome do livro" size="30" required>
             </div>
             <br>
             <div>
-                <label for="autor">Nome do autor:</label>
+                <label for="autor">Nome do autor:</label><br>
                 <select id="autor" name="autor" required>
                     <?php
                     $sql = 'select * from autores';
@@ -41,7 +45,7 @@
             </div>
             <br>
             <div>
-                <label for="categoriaTipo">Categoria:</label>
+                <label for="categoriaTipo">Categoria:</label><br>
                 <select id="categoriaTipo" name="categoriaTipo" required>
                     <?php
                     $sql = 'select * from categorias';
@@ -54,7 +58,7 @@
             </div>
             <br>
             <div>
-                <label for="ano">Data de Lançamento:</label>
+                <label for="ano">Data de Lançamento:</label><br>
                 <input type="date" id="ano" name="ano" required>
             </div>
             <br>

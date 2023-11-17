@@ -20,15 +20,15 @@
     <?php } ?>
 
     <div class="container">
-        <h3 class="cadastrarAutores">CADASTRAR AUTORES</h3>
+        <h1 class="cadastrarAutores">CADASTRAR AUTORES</h1>
         <form action="gravarAutores.php" method="POST" class="author-form">
             <div>
-                <label for="nome">Nome do autor:</label>
+                <label for="nome">Nome do autor:</label><br>
                 <input name="nome" id="nome" type="text" placeholder="Digite o nome do Autor" size="20" required>
             </div>
             <br>
             <div>
-                <label for="nacionalidade">Nacionalidade:</label>
+                <label for="nacionalidade">Nacionalidade:</label><br>
                 <input name="nacionalidade" id="nacionalidade" type="text" placeholder="Digite a nacionalidade do Autor" size="20" required>
             </div>
             <br>
