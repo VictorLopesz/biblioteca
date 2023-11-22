@@ -36,15 +36,16 @@ body {
 }
 
 #mensagem_cadastrar {
-    background-color: #f2bc65;
+    background-color:#FFD700;
     color: #382b18;
     padding: 10px;
     text-align: center;
     font-weight: bold;
 }
 
-h1 {
+.cadastrarAutores {
     text-align: center;
+    color: #333333;
 }
 
 form {

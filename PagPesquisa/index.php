@@ -53,7 +53,9 @@ include("../config/conexao.php");
             <?php
             if (!empty($_GET['busca'])) {
                 $pesquisa = $conn->real_escape_string($_GET['busca']);
-                $sql_code = "SELECT liv.titulo as livros,
+                $sql_code = "   SELECT 
+                                    liv.id_livros as id_livros,
+                                    liv.titulo as livros,
                                     liv.status as status,
                                     aut.nome as autores,
                                     cat.categoriaTipo as categorias,
@@ -63,16 +65,11 @@ include("../config/conexao.php");
                                 RIGHT JOIN livros liv ON lc.id_livros = liv.id_livros
                                 LEFT JOIN autores aut ON liv.autor = aut.id_autores
                                 WHERE cat.categoriaTipo LIKE '%$pesquisa%' OR liv.titulo LIKE '%$pesquisa%' OR aut.nome LIKE '%$pesquisa%';";
-                    if ($conn->query($sql_code)) {
-                    }
-                    
-                                $sql_query = $conn->query($sql_code) or die("ERRO AO CONSULTAR: " . $conn->error);
+
+                $sql_query = $conn->query($sql_code) or die("ERRO AO CONSULTAR: " . $conn->error);
 
                 if ($sql_query->num_rows == 0) {
             ?>
-                    <tr>
-                        <td colspan='5'>Nenhum resultado encontrado...</td>
-                    </tr>
                     <?php } else {
                     while ($dados = $sql_query->fetch_assoc()) {
                     ?>
@@ -80,11 +77,11 @@ include("../config/conexao.php");
                             <td><?php echo $dados['livros']; ?></td>
                             <td><?php echo $dados['autores']; ?></td>
                             <td><?php echo $dados['categorias']; ?></td>
-                            <td class="status <?php echo ($dados['status'] == 'a') ? 'ativo' : 'inativo'; ?>">
+                            <td class="status <?php echo ($dados['status'] === 'a') ? 'ativo' : 'inativo'; ?>">
                                 <?php echo ($dados['status'] == 'a') ? 'ativo' : 'inativo'; ?>
                             </td>
                             <td>
-                                <a href="../editarLivros/editaLivros.php?id_livros=<?php echo $dados['id_livros']; ?>" class="edit-link">
+                                <a href="../editarLivros/editar.php?id=<?php echo $dados['id_livros']; ?>" class="edit-link">
                                     <img class="imge" src="../img/editar.png" alt="editar">
                                 </a>
 
@@ -98,11 +95,54 @@ include("../config/conexao.php");
                     }
                 }
             } else {
+                $sql_code = "   SELECT 
+                liv.id_livros as id_livros,
+                liv.titulo as livros,
+                liv.status as status,
+                aut.nome as autores,
+                cat.categoriaTipo as categorias,
+                liv.id_livros
+            FROM categorias cat
+            RIGHT JOIN livro_categoria lc ON cat.id_categorias = lc.id_categorias
+            RIGHT JOIN livros liv ON lc.id_livros = liv.id_livros
+            LEFT JOIN autores aut ON liv.autor = aut.id_autores;";
+
+                $sql_query = $conn->query($sql_code) or die("Erro ao consultar" . $conn->error);
+
                 ?>
+
+            <?php }
+            if ($sql_query->num_rows == 0) {
+            ?>
                 <tr>
-                    <td colspan="5">Digite sua pesquisa...</td>
+                    <td colspan='5'>Nenhum livro encontrado...</td>
                 </tr>
-            <?php } ?>
+                <?php } else {
+                while ($dados = $sql_query->fetch_assoc()) {
+                ?>
+                    <tr>
+                        <td><?php echo $dados['livros']; ?></td>
+                        <td><?php echo $dados['autores']; ?></td>
+                        <td><?php echo $dados['categorias']; ?></td>
+                        <td class="status <?php echo ($dados['status'] === 'a') ? 'ativo' : 'inativo'; ?>">
+                            <?php echo ($dados['status'] == 'a') ? 'ativo' : 'inativo'; ?>
+                        </td>
+                        <td>
+                            <a href="../editarLivros/editar.php?id=<?php echo $dados['id_livros']; ?>" class="edit-link">
+                                <img class="imge" src="../img/editar.png" alt="editar">
+                            </a>
+
+                            <a href="../excluiLivros/deletaLivros.php?id=<?php echo $dados['id_livros']; ?>" class="delete-link">
+                                <img class="imge" src="../img/excluir.png" alt="excluir">
+
+                            </a>
+                        </td>
+                    </tr>
+            <?php
+                }
+            }
+
+            ?>
         </table>
     </div>
     <br>
