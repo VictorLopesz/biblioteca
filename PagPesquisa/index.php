@@ -64,7 +64,8 @@ include("../config/conexao.php");
                                 RIGHT JOIN livro_categoria lc ON cat.id_categorias = lc.id_categorias
                                 RIGHT JOIN livros liv ON lc.id_livros = liv.id_livros
                                 LEFT JOIN autores aut ON liv.autor = aut.id_autores
-                                WHERE cat.categoriaTipo LIKE '%$pesquisa%' OR liv.titulo LIKE '%$pesquisa%' OR aut.nome LIKE '%$pesquisa%';";
+                                WHERE cat.categoriaTipo LIKE '%$pesquisa%' OR liv.titulo LIKE '%$pesquisa%' OR aut.nome LIKE '%$pesquisa%'
+                                ORDER BY liv.titulo;";
 
                 $sql_query = $conn->query($sql_code) or die("ERRO AO CONSULTAR: " . $conn->error);
 
